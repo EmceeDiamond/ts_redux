@@ -1,26 +1,32 @@
 import React from 'react';
-import logo from './logo.svg';
+import { Container, Col, Row } from 'react-bootstrap';
+import TaskList from './components/TaskList';
+import AddNewTask from './components/AddNewTask';
+import { useSelector } from 'react-redux';
 import './App.css';
 
 function App() {
+
+  const tasks = useSelector(state => state);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Container className="main-app-container">
+      <Row className="mb-4">
+        <Col className="mt-4">
+          <AddNewTask />
+        </Col>
+      </Row>
+      <Row>
+        <Col md={12}>
+          <h4>Список задач</h4>
+        </Col>
+        <Col>
+          <TaskList tasks={ tasks } />
+        </Col>
+      </Row>
+    </Container>
   );
 }
+
 
 export default App;
